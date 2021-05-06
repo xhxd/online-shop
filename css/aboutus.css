@@ -1,0 +1,28 @@
+.description {
+  background-color: white;
+  max-width: 500px;
+  padding: 50px;
+  background-image: url("../images/LogoOpaque.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+  box-shadow: 10px 10px 10px #f6f6f6;
+  height: fit-content;
+}
+
+.description:hover {
+  box-shadow: 10px 10px 10px #eeeeee;
+}
+
+.page__right {
+  display: flex;
+  justify-content: center;
+}
+
+.description > h2 {
+  color: #00e278;
+}
+
+.description > h3 {
+  text-align: center;
+}
