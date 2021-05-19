@@ -1,1 +1,55 @@
-/* Account.css */
+.page__right {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.accounts {
+  background-color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 10px 10px 10px #f6f6f6;
+  padding: 0 20px 0 20px;
+}
+
+.accounts > img {
+  width: 50px;
+}
+
+.user__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.signout__button {
+  height: 40px;
+  width: 100px;
+  color: white;
+  background-color: rgb(241, 50, 114);
+  border: none;
+  cursor: pointer;
+}
+
+.fb__embed {
+  height: 100vh;
+}
+
+#fb-root {
+  width: 400px;
+}
+
+.fb-page {
+  width: 400px;
+  height: 100%;
+}

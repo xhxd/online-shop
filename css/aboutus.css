@@ -26,3 +26,12 @@
 .description > h3 {
   text-align: center;
 }
+
+.contact__info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact__info > p {
+  font-weight: 600;
+}

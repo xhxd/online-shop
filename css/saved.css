@@ -1,1 +1,60 @@
-/* Saved.css*/
+.title {
+  top: 15%;
+  position: absolute;
+  padding-left: 80px;
+}
+
+.saved__products {
+  top: 30%;
+  position: absolute;
+  padding-left: 80px;
+}
+
+.saved__product {
+  background-color: white;
+  display: flex;
+  max-width: 800px;
+  min-width: 600px;
+  border-radius: 10px;
+}
+
+.saved__product > img {
+  height: 150px;
+  max-width: 200px;
+  padding: 10px;
+}
+
+.savedProduct__name {
+  padding: 20px;
+}
+
+.savedProduct__button {
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    to right,
+    #24c6dc 0%,
+    #514a9d 51%,
+    #24c6dc 100%
+  );
+  margin: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  display: block;
+  bottom: 15%;
+  right: 5%;
+  position: absolute;
+}
+
+.savedProduct__button:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
