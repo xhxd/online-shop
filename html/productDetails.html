@@ -4,22 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account</title>
+    <title>Document</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/account.css">
+
     <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-analytics.js"></script>
 </head>
 
 <body>
-
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0"
-        nonce="h7g8jlWZ"></script>
-
     <div class="whole__page">
         <div class="header">
             <img src="../images/Logo2.png" alt="" class="header__logo" />
@@ -58,7 +52,7 @@
             </div>
 
             <a href="./account.html">
-                <div class="header__options header__options--account header__options--activeAccount">
+                <div class="header__options header__options--account">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -69,29 +63,9 @@
             </a>
         </div>
         <div class="page__right">
-            <div class="accounts">
-                <!-- The surrounding HTML is left untouched by FirebaseUI.
-     Your app may use that space for branding, controls and other customizations.-->
-                <img class="company__logo" src="../images/Logo2.png" alt="">
-                <h2 class="company__name">SWAPNA TRADE INTERNATIONAL</h2>
-                <div class="user__info"></div>
-                <div id="firebaseui-auth-container"></div>
-                <div id="loader">Loading...</div>
-            </div>
-            <div class="fb__embed">
-                <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-width="500"
-                    data-height="600" data-small-header="false" data-adapt-container-width="true"
-                    data-hide-cover="false" data-show-facepile="true">
-                    <blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a
-                            href="https://www.facebook.com/facebook">Due to slow internet the page is not loading...</a>
-                    </blockquote>
-                </div>
-            </div>
+            <h2 class="machine__details"></h2>
         </div>
     </div>
-    </div>
-
-    <script src="../js/account.js"></script>
 </body>
 
 </html>
