@@ -13,6 +13,7 @@ firebase.analytics();
 var auth = firebase.auth();
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
+var db = firebase.firestore();
 
 ui.start("#firebaseui-auth-container", {
   signInOptions: [

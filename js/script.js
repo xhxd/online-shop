@@ -24,6 +24,7 @@ const loadMachines = async () => {
       querySnapshot.docs.forEach((doc) => {
         dataArr.push(doc.data());
         machineData.push(doc.data());
+        console.log(machineData);
         displayMachines(dataArr);
       });
     });
@@ -112,11 +113,7 @@ const productsDetails = (e) => {
                         <br>
                         <div class="description">
                             <h3>Description</h3>
-                            <p>This state of art & Hi end quality servo high speed automatic packaging machine has been
-                                designed to produce authentic quality of (daily foil packed) consumable various products
-                                like Potato Chips, Salt, Sugar, Agriculture Grains, Coffee Beans, Chanachure, Dal Bhaja,
-                                Badam Bhaja, Dry Fruits, Other Snacks And many more regular/irregular shapes of
-                                products. Human machine interface provides the simplicity of the operation.</p>
+                            <p>${item.description}</p>
                         </div>
                     </div>
                     <div class="contact">
@@ -163,7 +160,7 @@ const productsDetails = (e) => {
                     <table class="dataTable">
                     ${tableDataName.forEach(tableFunction)}
                     </table>
-                    <img src="https://sc04.alicdn.com/kf/HTB1dS6IaBCw3KVjSZFlq6AJkFXav.jpg" alt="">
+                    <img src=${item.image2} alt="">
                 </div>
             </div>
     `;
@@ -181,8 +178,8 @@ db.collection("products")
   .get()
   .then((querySnapshot) => {
     querySnapshot.docs.forEach((doc) => {
-      tableDataName.push(doc.data().value);
-      tableDataValue.push(doc.data().value[(0, 1)]);
+      tableDataName.push([doc.data().value[0], doc.data().value[1]]);
+      tableDataValue.push([doc.data().value[0], doc.data().value[1]]);
     });
   });
 
@@ -190,8 +187,11 @@ console.log(tableDataName);
 console.log(tableDataValue);
 
 function tableFunction(item) {
-  return (
-    "<tr>" + "<td>" + item[0] + "</td>" + "<td>" + item[1] + "</td>" + "</tr>"
-  );
-  console.log(item[0], item[1]);
+  console.log(item);
+  return `
+    <tr>
+      <td>${item[0]}</td>
+      <td>${item[1]}</td>
+    </tr>
+  `;
 }
