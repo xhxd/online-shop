@@ -11,10 +11,27 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 var auth = firebase.auth();
+var db = firebase.firestore();
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     // User is signed in.
+    var userRemains = [];
+    var uName = user.displayName;
+
+    db.collection("saved")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.docs.forEach((doc) => {
+          userRemains.push(doc.data().name);
+        });
+      });
+
+    console.log(userRemains);
+    console.log(uName);
+
+    var n = userRemains.includes(uName);
+    console.log(n);
   } else {
     // No user is signed in.
   }
