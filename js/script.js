@@ -30,6 +30,30 @@ const loadMachines = async () => {
     });
 };
 
+var tableData = [];
+
+const loadTables = (product) => {
+  tableData = [];
+  db.collection("products")
+    .doc(`${product}`)
+    .collection("table")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.docs.map((doc) => {
+        tableData.push(doc.data().value);
+      });
+      tableData.map((element) => {
+        console.log(element);
+        return `
+            <tr>
+              <td>${element[0]}</td>
+              <td>${element[1]}</td>
+            </tr>
+        `;
+      });
+    });
+};
+
 searchBar.addEventListener("keyup", (e) => {
   const searchString = e.target.value.toLowerCase();
 
@@ -80,6 +104,7 @@ const displayMachines = (machines) => {
 };
 
 const productsDetails = (e) => {
+  loadTables();
   var choosenMachineName = e.querySelector(".product__name > p").innerHTML;
   var choosenMachineImage = e.querySelector(".product__image > img.src");
   console.log(choosenMachineName);
@@ -90,6 +115,7 @@ const productsDetails = (e) => {
       machine.image.includes(choosenMachineImage)
     );
   });
+
   console.log(filteredOneMachine);
   htmlString = filteredOneMachine.map((item) => {
     return `
@@ -135,7 +161,6 @@ const productsDetails = (e) => {
                             <p>WeChat</p>
                             <p>+8801911476829</p>
                         </div>
-
                         <br>
                         <br>
                         <div class="save__part" style="display:flex; justify-content:center;">
@@ -158,7 +183,7 @@ const productsDetails = (e) => {
                 </div>
                 <div class="productDetails__bottom">
                     <table class="dataTable">
-                    ${tableDataName.forEach(tableFunction)}
+                    ${loadTables(choosenMachineName)}
                     </table>
                     <img src=${item.image2} alt="">
                 </div>
@@ -169,29 +194,3 @@ const productsDetails = (e) => {
 };
 
 loadMachines();
-
-var tableDataName = [];
-var tableDataValue = [];
-db.collection("products")
-  .doc("Cmos Controlled Automatic Packing Machine")
-  .collection("table")
-  .get()
-  .then((querySnapshot) => {
-    querySnapshot.docs.forEach((doc) => {
-      tableDataName.push([doc.data().value[0], doc.data().value[1]]);
-      tableDataValue.push([doc.data().value[0], doc.data().value[1]]);
-    });
-  });
-
-console.log(tableDataName);
-console.log(tableDataValue);
-
-function tableFunction(item) {
-  console.log(item);
-  return `
-    <tr>
-      <td>${item[0]}</td>
-      <td>${item[1]}</td>
-    </tr>
-  `;
-}

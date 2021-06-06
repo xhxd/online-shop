@@ -25,13 +25,12 @@ firebase.auth().onAuthStateChanged(function (user) {
         querySnapshot.docs.forEach((doc) => {
           userRemains.push(doc.data().name);
         });
+        console.log(userRemains);
+        console.log(uName);
+
+        var n = userRemains.includes(uName);
+        console.log(n);
       });
-
-    console.log(userRemains);
-    console.log(uName);
-
-    var n = userRemains.includes(uName);
-    console.log(n);
   } else {
     // No user is signed in.
   }
