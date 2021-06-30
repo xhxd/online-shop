@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swapna Trade International</title>
+    <link rel="shortcut icon" href="images/logo2_KVd_icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
 
     <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
@@ -64,16 +65,40 @@
             </a>
         </div>
         <div class="page__right">
+            <div class="search">
+                <div class="search__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg>
+                </div>
+                <input type="text" placeholder="search..." class="search__bar">
+            </div>
             <div class="right__part">
-                <div class="search">
-                    <div class="search__icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-search" viewBox="0 0 16 16">
-                            <path
-                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                        </svg>
+                <div class="slideshow__container">
+                    <!--Full width image with number and caption-->
+                    <div class="mySlides fade">
+                        <img src="images/slideshowImage1.jpg" alt="image 1" style="width: 100%;">
                     </div>
-                    <input type="text" placeholder="search..." class="search__bar">
+
+                    <div class="mySlides fade">
+                        <img src="images/slideshowImage2.jpg" alt="image 2" style="width: 100%;">
+                    </div>
+
+                    <div class="mySlides fade">
+                        <img src="images/slideshowImage3.jpg" alt="image 3" style="width: 100%;">
+                    </div>
+
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+
+                <!-- The dots/circles -->
+                <div style="text-align: center;" class="all__dots">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
                 </div>
 
                 <div class="products">
@@ -105,6 +130,40 @@
                         </div>
                     </div>
 
+                </div>
+
+                <div class="production__lines" width="100">
+                    <div class="productionLines__heading">
+                        <h2 class="productionLines__headingName">Food Production Lines</h2>
+                        <h2 class="productionLines__headingNumber">01</h2>
+                    </div>
+                    <div class="all__productions">
+                        <div class="production__line">
+                            <div class="line__name">
+                                <h3></h3>
+                            </div>
+                            <div class="line__image">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="food__equipments" width="100">
+                    <div class="foodEquipments__heading">
+                        <h2 class="foodEquipments__headingName">Food Equipments</h2>
+                        <h2 class="foodEquipments__headingNumber">02</h2>
+                    </div>
+                    <div class="all__equipments">
+                        <div class="food__equipment">
+                            <div class="equipment__image">
+
+                            </div>
+                            <div class="equipment__name">
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
