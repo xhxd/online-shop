@@ -18,6 +18,12 @@
   height: fit-content;
 }
 
+.right__part {
+  display: grid;
+  justify-items: center;
+  background-color: #fafafa;
+}
+
 .header {
   z-index: 100;
   display: flex;
@@ -113,14 +119,133 @@
   outline: none;
 }
 
+/* Slideshow container */
+.slideshow__container {
+  max-width: 1500px;
+  max-height: 450px;
+  position: relative;
+  margin: 100px 0 0 0;
+  width: 95%;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+.mySlides > img {
+  border-radius: 20px;
+  max-height: 450px;
+  min-height: 425px;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: 13px;
+  height: 13px;
+  margin-top: -22px;
+  padding: 16px;
+  color: rgba(107, 107, 107, 0.8);
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 50%;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prev {
+  left: 20px;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 20px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.number__text {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 10px 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .products {
   background-color: #fafafa;
-  top: 15%;
-  position: absolute;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   height: auto;
+  margin: 80px;
 }
 
 .product {
@@ -210,18 +335,31 @@
   color: #969696;
 }
 
-.machine__details {
+.machine__details,
+.production__details {
   background-color: white;
   margin: 20px;
   border-radius: 10px;
   box-shadow: 10px 10px 10px #f6f6f6;
 }
 
-.productDetails__top {
+.production__details {
+  min-width: 1000px;
+}
+
+.productDetails__top,
+.productionDetails__top {
   display: flex;
 }
 
-.image__1 > img {
+.productionDetails__top {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.image__1 > img,
+.productionDetails__top > img {
+  padding: 10px;
   width: 450px;
   min-width: 100px;
 }
@@ -242,6 +380,11 @@
   justify-content: space-between;
   min-width: 200px;
   max-width: 300px;
+}
+
+.contact__info > a,
+.production__contacting > h3 {
+  color: #f74258;
 }
 
 save__part {
@@ -294,7 +437,8 @@ save__part {
   min-width: 100px;
 }
 
-.productDetails__bottom > table {
+.productDetails__bottom > table,
+.production__contacting > table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 50%;
@@ -309,4 +453,241 @@ th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+.production__lines,
+.food__equipments {
+  background-color: white;
+  width: 93%;
+  max-width: 1000px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px #f6f6f6;
+  margin: 0 0 80px 0;
+}
+
+.productionLines__heading,
+.foodEquipments__heading {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  background-color: #f74258;
+  align-items: center;
+  border-radius: 0 50px 50px 0;
+}
+
+.productionLines__headingName,
+.foodEquipments__headingName {
+  background-color: #f74258;
+  padding: 10px 0 10px 15px;
+  color: white;
+}
+
+.productionLines__headingNumber,
+.foodEquipments__headingNumber {
+  padding: 10px;
+  background-color: white;
+  color: #f74258;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.all__productions,
+.all__equipments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.production__line {
+  border-bottom: 3px solid rgb(224, 224, 224);
+  display: flex;
+  width: 95%;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  cursor: pointer;
+}
+
+.production__line:hover > .line__name > h3 {
+  color: #e31e25;
+}
+
+.line__name {
+  width: 50%;
+}
+
+.line__name > h3 {
+  font-weight: 500;
+  font-size: 25px;
+  color: #7a7a7a;
+}
+
+.line__image {
+  width: 250px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  object-fit: fill;
+}
+
+.line__image > img {
+  height: 100px;
+  width: 250px;
+  object-fit: cover;
+  object-position: 100% 39%;
+}
+
+.production__contacting {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.productionDetails__bottom {
+  margin: 40px;
+}
+
+.all__equipments {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  flex-direction: row;
+  padding: 0 20px;
+}
+
+.food__equipment {
+  margin: 20px;
+}
+
+.equipment__image {
+  width: 250px;
+  height: 250px;
+  border: 1px solid #e9e9e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.equipment__image:hover {
+  border: 1px solid #e31e25;
+}
+
+.equipment__image > img {
+  width: 230px;
+}
+
+.equipment__image:hover > img {
+  width: 250px;
+}
+
+.equipment__image:hover > img {
+  -webkit-animation-name: hoverEffect;
+  -webkit-animation-duration: 0.5s;
+  animation-name: hoverEffect;
+  animation-duration: 0.5s;
+}
+
+@-webkit-keyframes hoverEffect {
+  from {
+    width: 230px;
+  }
+  to {
+    width: 250px;
+  }
+}
+
+@keyframes hoverEffect {
+  from {
+    width: 230px;
+  }
+  to {
+    width: 250px;
+  }
+}
+
+.equipment__name {
+  width: 240px;
+  display: flex;
+  justify-content: center;
+}
+
+.equipment__name > p {
+  font-size: 21px;
+  color: #7a7a7a;
+}
+
+.equipment__image:hover + .equipment__name > p {
+  color: #e31e25;
+}
+
+@media screen and (max-width: 425px) and (min-width: 315px) {
+  .whole__page {
+    width: 100%;
+  }
+
+  .mySlides > img {
+    min-height: 200px;
+  }
+
+  .products {
+    margin: 10px;
+  }
+
+  .production__lines {
+    margin: 0 0 40px 0;
+  }
+
+  .production__line {
+    flex-direction: column;
+  }
+
+  .line__name {
+    width: 90%;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .line__name > h3 {
+    font-size: 15px;
+  }
+
+  .productDetails__top {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .productDetails__bottom {
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    align-items: center;
+  }
+
+  .productDetails__bottom > img {
+    width: 80%;
+    margin-bottom: 30px;
+  }
+
+  .image__1 {
+    width: 90%;
+  }
+
+  .image__1 > img {
+    width: 100%;
+  }
+
+  .machine__details {
+    width: 100%;
+  }
+
+  .dataTable {
+    width: 90%;
+    margin-bottom: 40px;
+  }
 }
