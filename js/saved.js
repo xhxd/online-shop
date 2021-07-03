@@ -35,3 +35,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     // No user is signed in.
   }
 });
+
+const removeItem = () => {
+  localStorage.removeItem("Name");
+};

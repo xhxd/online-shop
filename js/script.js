@@ -152,6 +152,8 @@ searchBar.addEventListener("keyup", (e) => {
       "hidden";
     document.querySelector(".foodEquipments__heading").style.visibility =
       "hidden";
+    document.querySelector(".food__equipments").style.display = "unset";
+    document.querySelector(".production__lines").style.display = "unset";
   } else {
     document.querySelector(".slideshow__container").style.display = "unset";
     document.querySelector(".all__dots").style.display = "unset";
@@ -159,6 +161,11 @@ searchBar.addEventListener("keyup", (e) => {
       "visible";
     document.querySelector(".foodEquipments__heading").style.visibility =
       "visible";
+    document.querySelector(".food__equipments").style.display = "unset";
+    document.querySelector(".production__lines").style.display = "unset";
+    document.querySelector(".header__options--home").style.color = "#e31e25";
+    document.querySelector(".header__options--home").style.border =
+      "0 5px 0 0 solid #e31e25";
   }
   const filteredMachines = dataArr.filter((machine) => {
     return machine.name.toLowerCase().includes(searchString);
@@ -196,7 +203,7 @@ const displayMachines = (machines) => {
             </div>
         </div>
       </div>
-    <div class="product__button">
+    <div class="product__button" data-productName="${machine.name}" onclick="saveProduct(this)">
         <div class="button__icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                 class="bi bi-bookmarks" viewBox="0 0 16 16">
@@ -375,6 +382,23 @@ const productionDetails = (e) => {
     return production.name.includes(choosenProductionName);
   });
 
+  var mq = window.matchMedia("(max-width: 425px)");
+  var style = "";
+
+  if (mq.matches) {
+    document.querySelector(".search").style.visibility = "hidden";
+
+    style = document.createElement("style");
+    style.innerHTML = `
+      .products {
+        max-width: 330px;
+      }
+    `;
+    document.head.appendChild(style);
+  } else {
+    document.querySelector(".search").style.visibility = "visible";
+  }
+
   document
     .querySelector(".header__options--home")
     .addEventListener("mouseover", hoverEffectOver);
@@ -393,10 +417,11 @@ const productionDetails = (e) => {
   console.log(filteredOneProduction);
   htmlString = filteredOneProduction.map((line) => {
     return `
-      <div class="production__details">
+      <div class="machine__details">
         <div class="productionDetails__top">
+          <div class="production__image">
             <img src=${line.image} alt="">
-
+          </div>
             <div class="production__contacting">
                 <div class="production__name">
                     <h2>${line.name}</h2>
@@ -493,6 +518,30 @@ const displayFoodEquipment = (equipments) => {
     })
     .join("");
   document.querySelector(".all__equipments").innerHTML = foodEquipmentString;
+};
+
+var savedProductArray = [];
+
+const saveProduct = (e) => {
+  var savedItems = JSON.parse(localStorage.getItem("productName"));
+
+  if (localStorage.length == 0) {
+    savedProductArray.push(e.getAttribute("data-productName"));
+    localStorage.setItem("productName", JSON.stringify(savedProductArray));
+  } else {
+    if (savedItems.includes(e.getAttribute("data-productName"))) {
+      return;
+    } else {
+      savedProductArray = [];
+
+      savedItems.map((item) => {
+        savedProductArray.push(item);
+      });
+
+      savedProductArray.push(e.getAttribute("data-productName"));
+      localStorage.setItem("productName", JSON.stringify(savedProductArray));
+    }
+  }
 };
 
 loadMachines();
