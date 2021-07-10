@@ -109,6 +109,33 @@ function currentSlide(n) {
   showSlides((slideIndex = n));
 }
 
+var mMedia = window.matchMedia("(max-width: 425px)");
+var headerHTML = "";
+
+if (mMedia.matches) {
+  headerHTML = `
+    <div class="menu-wrap">
+        <input type="checkbox" class="toggler">
+        <div class="hamburger">
+            <div></div>
+        </div>
+        <div class="menu">
+            <div>
+                <div>
+                    <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="html/aboutus.html">About Us</a></li>
+                    <li><a href="html/saved.html">Bookmarks</a></li>
+                    <li><a href="html/account.html">Account</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+  `;
+  document.querySelector(".header").innerHTML = headerHTML;
+}
+
 function showSlides(n) {
   var i;
   var slides = document.querySelectorAll(".mySlides");
@@ -203,7 +230,7 @@ const displayMachines = (machines) => {
             </div>
         </div>
       </div>
-    <div class="product__button" data-productName="${machine.name}" onclick="saveProduct(this)">
+    <div class="product__button" data-productName="${machine.name}" data-productImage="${machine.image}" onclick="saveProduct(this)">
         <div class="button__icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                 class="bi bi-bookmarks" viewBox="0 0 16 16">
@@ -244,16 +271,6 @@ const productsDetails = (e) => {
     );
   });
 
-  document
-    .querySelector(".header__options--home")
-    .addEventListener("mouseover", hoverEffectOver);
-
-  document
-    .querySelector(".header__options--home")
-    .addEventListener("mouseout", hoverEffectOut);
-
-  document.querySelector(".header__options--home").style.color = "gray";
-  document.querySelector(".header__options--home").style.border = "none";
   document.querySelector(".slideshow__container").style.display = "none";
   document.querySelector(".all__dots").style.display = "none";
   document.querySelector(".production__lines").style.display = "none";
@@ -274,6 +291,16 @@ const productsDetails = (e) => {
     document.head.appendChild(style);
   } else {
     document.querySelector(".search").style.visibility = "visible";
+    document
+      .querySelector(".header__options--home")
+      .addEventListener("mouseover", hoverEffectOver);
+
+    document
+      .querySelector(".header__options--home")
+      .addEventListener("mouseout", hoverEffectOut);
+
+    document.querySelector(".header__options--home").style.color = "gray";
+    document.querySelector(".header__options--home").style.border = "none";
   }
 
   loadTables(choosenMachineName);
@@ -326,7 +353,7 @@ const productsDetails = (e) => {
                         <br>
                         <br>
                         <div class="save__part" style="display:flex; justify-content:center;">
-                            <div class="save__button">
+                            <div class="save__button" data-productName="${item.name}" data-productImage="${item.image}" onclick="saveProduct(this)">
                                 <div class="save__icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                         class="bi bi-bookmarks" viewBox="0 0 16 16">
@@ -391,24 +418,26 @@ const productionDetails = (e) => {
     style = document.createElement("style");
     style.innerHTML = `
       .products {
-        max-width: 330px;
+        top: 30px;
+        margin: 10px;
       }
     `;
     document.head.appendChild(style);
   } else {
     document.querySelector(".search").style.visibility = "visible";
+
+    document
+      .querySelector(".header__options--home")
+      .addEventListener("mouseover", hoverEffectOver);
+
+    document
+      .querySelector(".header__options--home")
+      .addEventListener("mouseout", hoverEffectOut);
+
+    document.querySelector(".header__options--home").style.color = "gray";
+    document.querySelector(".header__options--home").style.border = "none";
   }
 
-  document
-    .querySelector(".header__options--home")
-    .addEventListener("mouseover", hoverEffectOver);
-
-  document
-    .querySelector(".header__options--home")
-    .addEventListener("mouseout", hoverEffectOut);
-
-  document.querySelector(".header__options--home").style.color = "gray";
-  document.querySelector(".header__options--home").style.border = "none";
   document.querySelector(".slideshow__container").style.display = "none";
   document.querySelector(".all__dots").style.display = "none";
   document.querySelector(".production__lines").style.display = "none";
@@ -448,7 +477,7 @@ const productionDetails = (e) => {
                     </tr>
                 </table>
                 <div class="save__part" style="display:flex; justify-content:center; width:60%; margin-top:20px;">
-                <div class="save__button">
+                <div class="save__button"data-productName="${line.name}" data-productImage="${line.image}" onclick="saveProduction(this)">
                     <div class="save__icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-bookmarks" viewBox="0 0 16 16">
@@ -521,15 +550,33 @@ const displayFoodEquipment = (equipments) => {
 };
 
 var savedProductArray = [];
+var savedItemTruth = [];
 
 const saveProduct = (e) => {
   var savedItems = JSON.parse(localStorage.getItem("productName"));
+  savedItemTruth = [];
+  for (let sItem in savedItems) {
+    savedItemTruth.push(
+      savedItems[sItem].name == e.getAttribute("data-productName")
+    );
+  }
+  console.log(savedItemTruth);
+
+  const truthVerifier = (element) => element == true;
+  var truth = savedItemTruth.some(truthVerifier);
+  console.log(truth);
+  //console.log(savedItemName);
 
   if (localStorage.length == 0) {
-    savedProductArray.push(e.getAttribute("data-productName"));
+    savedProductArray = [];
+
+    savedProductArray.push({
+      name: e.getAttribute("data-productName"),
+      image: e.getAttribute("data-productImage"),
+    });
     localStorage.setItem("productName", JSON.stringify(savedProductArray));
   } else {
-    if (savedItems.includes(e.getAttribute("data-productName"))) {
+    if (truth === true) {
       return;
     } else {
       savedProductArray = [];
@@ -538,8 +585,62 @@ const saveProduct = (e) => {
         savedProductArray.push(item);
       });
 
-      savedProductArray.push(e.getAttribute("data-productName"));
+      savedProductArray.push({
+        name: e.getAttribute("data-productName"),
+        image: e.getAttribute("data-productImage"),
+      });
       localStorage.setItem("productName", JSON.stringify(savedProductArray));
+    }
+  }
+};
+
+var savedProductionArray = [];
+var savedProductionTruth = [];
+
+const saveProduction = (e) => {
+  var savedProduction = JSON.parse(localStorage.getItem("productionName"));
+  savedProductionTruth = [];
+  for (let sItem in savedProduction) {
+    savedProductionTruth.push(
+      savedProduction[sItem].name == e.getAttribute("data-productName")
+    );
+  }
+  console.log(savedProductionTruth);
+
+  const truthVerifierProduction = (element) => element == true;
+  var truthProduction = savedProductionTruth.some(truthVerifierProduction);
+  console.log(truthProduction);
+  //console.log(savedItemName);
+
+  if (localStorage.getItem("productionName") === null) {
+    savedProductionArray = [];
+
+    savedProductionArray.push({
+      name: e.getAttribute("data-productName"),
+      image: e.getAttribute("data-productImage"),
+    });
+    localStorage.setItem(
+      "productionName",
+      JSON.stringify(savedProductionArray)
+    );
+  } else {
+    if (truthProduction === true) {
+      return;
+    } else {
+      savedProductionArray = [];
+
+      savedProduction.map((item) => {
+        savedProductionArray.push(item);
+      });
+
+      savedProductionArray.push({
+        name: e.getAttribute("data-productName"),
+        image: e.getAttribute("data-productImage"),
+      });
+      localStorage.setItem(
+        "productionName",
+        JSON.stringify(savedProductionArray)
+      );
     }
   }
 };
