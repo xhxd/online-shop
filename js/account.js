@@ -15,7 +15,7 @@ var auth = firebase.auth();
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var db = firebase.firestore();
 
-var mMedia = window.matchMedia("(max-width: 425px)");
+var mMedia = window.matchMedia("(max-width: 770px)");
 var headerHTML = "";
 
 if (mMedia.matches) {

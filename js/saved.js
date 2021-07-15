@@ -69,7 +69,7 @@ const loadProductionLine = async () => {
 var savedThings;
 var savedProduction;
 
-var mMedia = window.matchMedia("(max-width: 425px)");
+var mMedia = window.matchMedia("(max-width: 770px)");
 var headerHTML = "";
 
 if (mMedia.matches) {

@@ -109,7 +109,7 @@ function currentSlide(n) {
   showSlides((slideIndex = n));
 }
 
-var mMedia = window.matchMedia("(max-width: 425px)");
+var mMedia = window.matchMedia("(max-width: 770px)");
 var headerHTML = "";
 
 if (mMedia.matches) {
@@ -222,7 +222,7 @@ const displayMachines = (machines) => {
     <div class="product">
       <div class="product__details" onclick="productsDetails(this)">
         <div class="product__image">
-            <img src=${machine.image} alt="" />
+            <img src=${machine.image} alt=${machine.name} />
         </div>
         <div class="product__info">
             <div class="product__name">
@@ -276,12 +276,11 @@ const productsDetails = (e) => {
   document.querySelector(".production__lines").style.display = "none";
   document.querySelector(".food__equipments").style.display = "none";
 
-  var mq = window.matchMedia("(max-width: 425px)");
+  var mq = window.matchMedia("(max-width: 770px)");
+  var mqMob = window.matchMedia("(max-width: 425px)");
   var style = "";
 
-  if (mq.matches) {
-    document.querySelector(".search").style.visibility = "hidden";
-
+  if (mqMob.matches) {
     style = document.createElement("style");
     style.innerHTML = `
       .products {
@@ -289,6 +288,10 @@ const productsDetails = (e) => {
       }
     `;
     document.head.appendChild(style);
+  }
+
+  if (mq.matches) {
+    document.querySelector(".search").style.visibility = "hidden";
   } else {
     document.querySelector(".search").style.visibility = "visible";
     document
@@ -311,7 +314,7 @@ const productsDetails = (e) => {
     <div class="machine__details">
                 <div class="productDetails__top">
                     <div class="image__1">
-                        <img src=${item.image} alt="">
+                        <img src=${item.image} alt=${item.name}>
                     </div>
                     <div class="all__description">
                         <div class="name">
@@ -392,7 +395,7 @@ const displayProductionLine = (lines) => {
             <h3>${line.name}</h3>
         </div>
         <div class="line__image">
-            <img src=${line.image} alt="">
+            <img src=${line.image} alt=${line.name}>
         </div>
     </div>
     `;
@@ -409,7 +412,7 @@ const productionDetails = (e) => {
     return production.name.includes(choosenProductionName);
   });
 
-  var mq = window.matchMedia("(max-width: 425px)");
+  var mq = window.matchMedia("(max-width: 770px)");
   var style = "";
 
   if (mq.matches) {
@@ -449,7 +452,7 @@ const productionDetails = (e) => {
       <div class="machine__details">
         <div class="productionDetails__top">
           <div class="production__image">
-            <img src=${line.image} alt="">
+            <img src=${line.image} alt=${line.name}>
           </div>
             <div class="production__contacting">
                 <div class="production__name">
@@ -537,7 +540,7 @@ const displayFoodEquipment = (equipments) => {
       return `
       <div class="food__equipment">
         <div class="equipment__image">
-            <img src=${equipment.image} alt="">
+            <img src=${equipment.image} alt=${equipment.name}>
         </div>
         <div class="equipment__name">
             <p>${equipment.name}</p>
