@@ -81,7 +81,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 770px) {
   .saved__product {
     flex-direction: column;
     width: 215px;

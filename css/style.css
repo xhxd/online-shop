@@ -160,6 +160,16 @@
   align-items: center;
 }
 
+.slideshow__container:hover .prev {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.slideshow__container:hover .next {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
 .prev {
   left: 20px;
 }
@@ -379,7 +389,6 @@
   display: flex;
   justify-content: space-between;
   min-width: 200px;
-  max-width: 300px;
 }
 
 .contact__info > a,
@@ -625,11 +634,7 @@ tr:nth-child(even) {
   color: #e31e25;
 }
 
-@media screen and (max-width: 425px) {
-  .whole__page {
-    width: 100%;
-  }
-
+@media screen and (max-width: 770px) {
   .header {
     width: 0;
     height: 0;
@@ -785,6 +790,93 @@ tr:nth-child(even) {
     color: inherit;
     text-decoration: none;
     transition: color 0.4s ease;
+  }
+
+  .mySlides > img {
+    min-height: 300px;
+  }
+
+  .whole__page {
+    width: 100%;
+  }
+
+  .page__right {
+    width: 100%;
+    margin-left: 0px;
+    padding: 0px;
+    margin: 5px;
+  }
+
+  .right__part {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 770px) and (min-width: 426px) {
+  .products {
+    margin: 10px;
+    width: 100%;
+    top: 30px;
+    max-width: 760px;
+  }
+
+  .production__lines {
+    margin: 0 0 40px 0;
+  }
+
+  .production__line {
+    flex-direction: column;
+  }
+
+  .line__name {
+    width: 90%;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .line__name > h3 {
+    font-size: 15px;
+  }
+
+  .production__details {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .productionDetails__top {
+    display: grid;
+  }
+
+  .productDetails__top {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    column-gap: 30px;
+    justify-items: center;
+    grid-template-areas: "contact contact ";
+  }
+
+  .image__1 > img {
+    width: 100%;
+  }
+
+  .all__description {
+    margin: 30px 0;
+    width: 50%;
+  }
+
+  .contact {
+    grid-area: contact;
+  }
+
+  .all__equipments {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .whole__page {
+    width: 100%;
   }
 
   .page__right {
