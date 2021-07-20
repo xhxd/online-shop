@@ -83,6 +83,7 @@ if (mMedia.matches) {
             <div>
                 <div>
                     <ul>
+                    <li><img src="../images/Logo2.png" alt="" class="headerMenu__logo" /></li>
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="./aboutus.html">About Us</a></li>
                     <li><a href="./saved.html">Bookmarks</a></li>
@@ -153,8 +154,46 @@ firebase.auth().onAuthStateChanged(function (user) {
     loadProductionLine();
     displaySaved(savedThings);
     displaySavedProduction(savedProduction);
+
+    if (savedThings.length == 0 && savedProduction.length == 0) {
+      document.querySelector(
+        ".saved__products"
+      ).innerHTML = `<h2>No Saved Products 😶</h2>`;
+
+      var style = document.createElement("style");
+      style.innerHTML = `
+        .saved__products {
+          width: 100%;
+          text-align: center;
+        }
+  
+        .right__part {
+          width: 100%;
+          height: 100vh;
+          align-items: center;
+        }
+      `;
+      document.head.appendChild(style);
+    }
   } else {
-    // No user is signed in.
+    document.querySelector(
+      ".saved__products"
+    ).innerHTML = `<h2>Sign in to see the saved products (Go to Accounts page)</h2>`;
+
+    var style = document.createElement("style");
+    style.innerHTML = `
+      .saved__products {
+        width: 100%;
+        text-align: center;
+      }
+
+      .right__part {
+        width: 100%;
+        height: 100vh;
+        align-items: center;
+      }
+    `;
+    document.head.appendChild(style);
   }
 });
 

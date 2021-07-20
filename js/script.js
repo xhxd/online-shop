@@ -1,3 +1,4 @@
+//Firebase Config
 var firebaseConfig = {
   apiKey: "AIzaSyCFSZ1C89OeY1Bm5L_ytmv4Bu3qpsuhadQ",
   authDomain: "online-shop-d228b.firebaseapp.com",
@@ -13,10 +14,12 @@ firebase.analytics();
 var db = firebase.firestore();
 var auth = firebase.auth();
 
+//Declaring the variables
 var dataArr = [];
 var machineData = [];
 const searchBar = document.querySelector(".search__bar");
 
+//Loading the machines
 const loadMachines = async () => {
   db.collection("products")
     .get()
@@ -31,9 +34,11 @@ const loadMachines = async () => {
     });
 };
 
+//Declaring the tables
 var tableData = [];
 var tableString = "";
 
+//Loading the machine tables
 const loadTables = (product) => {
   tableData = [];
   console.log(product.replace(" and ", " & "));
@@ -60,9 +65,11 @@ const loadTables = (product) => {
     });
 };
 
+//Declaring the Production array
 var productionLineArr = [];
 var productionData = [];
 
+//Loading the Production lines
 const loadProductionLine = () => {
   db.collection("productionLine")
     .get()
@@ -76,8 +83,10 @@ const loadProductionLine = () => {
     });
 };
 
+//Declaring the food equipment array
 var foodEquipmentArr = [];
 
+//Loading the food equipments
 const loadFoodEquipment = () => {
   db.collection("foodEquipment")
     .get()
@@ -90,6 +99,36 @@ const loadFoodEquipment = () => {
     });
 };
 
+//Making the header responsive
+var mMedia = window.matchMedia("(max-width: 770px)");
+var headerHTML = "";
+
+if (mMedia.matches) {
+  headerHTML = `
+    <div class="menu-wrap">
+        <input type="checkbox" class="toggler">
+        <div class="hamburger">
+            <div></div>
+        </div>
+        <div class="menu">
+            <div>
+                <div>
+                    <ul>
+                    <li><img src="images/Logo2.png" alt="" class="headerMenu__logo" /></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="html/aboutus.html">About Us</a></li>
+                    <li><a href="html/saved.html">Bookmarks</a></li>
+                    <li><a href="html/account.html">Account</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+  `;
+  document.querySelector(".header").innerHTML = headerHTML;
+}
+
+//The slideshow part
 var slideIndex = 1;
 showSlides(slideIndex);
 
@@ -107,33 +146,6 @@ function plusSlides(n) {
 // Thumbnail image controls
 function currentSlide(n) {
   showSlides((slideIndex = n));
-}
-
-var mMedia = window.matchMedia("(max-width: 770px)");
-var headerHTML = "";
-
-if (mMedia.matches) {
-  headerHTML = `
-    <div class="menu-wrap">
-        <input type="checkbox" class="toggler">
-        <div class="hamburger">
-            <div></div>
-        </div>
-        <div class="menu">
-            <div>
-                <div>
-                    <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="html/aboutus.html">About Us</a></li>
-                    <li><a href="html/saved.html">Bookmarks</a></li>
-                    <li><a href="html/account.html">Account</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-  `;
-  document.querySelector(".header").innerHTML = headerHTML;
 }
 
 function showSlides(n) {
@@ -156,10 +168,11 @@ function showSlides(n) {
   dots[slideIndex - 1].className += " active";
 }
 
+//The search bar function
 searchBar.addEventListener("keyup", (e) => {
   const searchString = e.target.value.toLowerCase();
 
-  var mq = window.matchMedia("(max-width: 425px)");
+  var mq = window.matchMedia("(max-width: 770px)");
   var style = "";
 
   if (mq.matches) {
@@ -213,6 +226,7 @@ searchBar.addEventListener("keyup", (e) => {
 
 console.log(dataArr);
 
+//Displaying the Machines
 var htmlString = "";
 
 const displayMachines = (machines) => {
@@ -259,6 +273,7 @@ function hoverEffectOut() {
   document.querySelector(".header__options").style.color = "grey";
 }
 
+//Displaying the product details
 const productsDetails = (e) => {
   var choosenMachineName = e.querySelector(".product__name > p").innerHTML;
   var choosenMachineImage = e.querySelector(".product__image > img.src");
@@ -384,6 +399,7 @@ const productsDetails = (e) => {
   document.querySelector(".products").innerHTML = htmlString;
 };
 
+//Displaying the production lines
 var productionLineString = "";
 
 const displayProductionLine = (lines) => {
@@ -404,6 +420,7 @@ const displayProductionLine = (lines) => {
   document.querySelector(".all__productions").innerHTML = productionLineString;
 };
 
+//Displaying the production line details
 const productionDetails = (e) => {
   var choosenProductionName = e.querySelector(".line__name > h3").innerHTML;
   console.log(choosenProductionName);
@@ -532,6 +549,7 @@ const productionDetails = (e) => {
   document.querySelector(".products").innerHTML = htmlString;
 };
 
+//Displaying food equipments
 var foodEquipmentString = "";
 
 const displayFoodEquipment = (equipments) => {
@@ -552,6 +570,7 @@ const displayFoodEquipment = (equipments) => {
   document.querySelector(".all__equipments").innerHTML = foodEquipmentString;
 };
 
+//Saving the products
 var savedProductArray = [];
 var savedItemTruth = [];
 

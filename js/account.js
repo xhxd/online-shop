@@ -29,6 +29,7 @@ if (mMedia.matches) {
             <div>
                 <div>
                     <ul>
+                    <li><img src="../images/Logo2.png" alt="" class="headerMenu__logo" /></li>
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="./aboutus.html">About Us</a></li>
                     <li><a href="./saved.html">Bookmarks</a></li>
